@@ -1,16 +1,24 @@
 {
-    "extends": "tslint:latest",
-    "rules": {
-      "variable-name": [
-        true,
-        "allow-pascal-case"
-      ],
-      "import-spacing": false,
-      "object-literal-sort-keys": false,
-      "no-namespace": false,
-      "no-console": false,
-      "interface-name": false,
-      "object-literal-key-quotes": [true, "consist"]
-    }
+  "extends": "tslint:latest",
+  "linterOptions": {
+    "exclude": [
+      "src/gql.ts"
+    ]
+  },
+  "rules": {
+    "variable-name": [
+      true,
+      "allow-pascal-case"
+    ],
+    "semicolon": [true, "never"],
+    "import-spacing": false,
+    "object-literal-sort-keys": false,
+    "no-namespace": false,
+    "no-console": false,
+    "interface-name": false,
+    "object-literal-key-quotes": [
+      true,
+      "consist"
+    ]
   }
-  
+}

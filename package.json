@@ -5,17 +5,25 @@
   "scripts": {
     "dev": "ts-node src/index.ts",
     "lint": "tslint --project . --fix",
-    "test/login": "ts-node src/api/login.ts"
+    "test/login": "ts-node src/api/login.ts",
+    "gql/gen": "graphql-codegen --config gql.yml"
   },
   "dependencies": {
     "@types/dotenv": "^6.1.1",
+    "@types/graphql": "^14.2.0",
     "@types/puppeteer": "^1.12.3",
     "apollo-server": "^2.4.8",
     "dotenv": "^7.0.0",
-    "graphql": "^14.2.0",
+    "graphql": "^14.2.1",
     "puppeteer": "^1.14.0",
     "ts-node": "^8.0.2",
     "tslint": "^5.13.1",
     "typescript": "^3.3.3333"
+  },
+  "devDependencies": {
+    "@graphql-codegen/cli": "^1.0.6",
+    "@graphql-codegen/introspection": "^1.0.6",
+    "@graphql-codegen/typescript": "1.0.6",
+    "@graphql-codegen/typescript-resolvers": "1.0.6"
   }
 }

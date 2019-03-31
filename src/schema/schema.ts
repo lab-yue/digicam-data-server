@@ -1,19 +1,42 @@
-import { gql } from "apollo-server";
+import { gql } from "apollo-server"
 
 export default gql`
 
   type Query {
-    waste(genre:String,type:String):  [Waste]
-    records(year: String, month: String): [Record]
-    prefectures: [Prefecture]
-    prefecture(id: String,name:String): Prefecture
-    industries: [Industry]
-    industry(id: String): Industry
-    stores:[Store]
-    store(id: String):Store
-    year(year:String): Year
-    month(year:String,month:String): Month
+    info: [Info]
   }
 
-  
-`;
+  type Info {
+    catagroy: String!
+    date: String!
+    property: String!
+    title: String!
+    sender: String!
+    status: String!
+    link:String!
+    detail: InfoDetail
+  }
+
+  type InfoDetail {
+    sender: String!
+    date: String!
+    catagroy: String!
+    effectiveness: String!
+    property: String!
+    title: String!
+    content: String!
+    file: String!
+  }
+
+  type Curriculum {
+    title: String!
+    teachers: [String!]
+    year: String!
+    availability: String!
+    day: String!
+    time: String!
+    status:String!
+    link:String!
+  }
+
+`
