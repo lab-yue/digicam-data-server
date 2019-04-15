@@ -1,9 +1,12 @@
 import { gql } from "apollo-server"
 
 export default gql`
-
   type Query {
-    info: [Info]
+    allInfo: [Info]!
+    allCourse: [Course]!
+    allFeedbackSheet: [FeedbackSheet]!
+    allTask: [Task]!
+    allMaterial: [Material]!
   }
 
   type Info {
@@ -13,7 +16,7 @@ export default gql`
     title: String!
     sender: String!
     status: String!
-    link:String!
+    link: String!
     detail: InfoDetail
   }
 
@@ -28,15 +31,51 @@ export default gql`
     file: String!
   }
 
-  type Curriculum {
+  type Course {
     title: String!
     teachers: [String!]
     year: String!
     availability: String!
     day: String!
     time: String!
-    status:String!
-    link:String!
+    status: String!
+    link: String!
   }
 
+  type FeedbackSheet {
+    date: String!
+    course: String!
+    time: String!
+    deadline: String!
+    status: String!
+  }
+
+  type Task {
+    date: String!
+    course: String!
+    title: String!
+    deadline: String!
+    status: String!
+  }
+
+  type Material {
+    date: String!
+    property: String!
+    course: String!
+    title: String!
+    status: String!
+    link: String!
+    detail: MaterialDetail
+  }
+
+  type MaterialDetail {
+    sender: String!
+    date: String!
+    property: String!
+    course: String!
+    title: String!
+    content: String!
+    link: String!
+    fileLink: String!
+  }
 `

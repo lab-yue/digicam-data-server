@@ -15,7 +15,7 @@ export enum CacheControlScope {
   Private = "PRIVATE"
 }
 
-export type Curriculum = {
+export type Course = {
   title: Scalars["String"];
   teachers?: Maybe<Array<Scalars["String"]>>;
   year: Scalars["String"];
@@ -24,6 +24,14 @@ export type Curriculum = {
   time: Scalars["String"];
   status: Scalars["String"];
   link: Scalars["String"];
+};
+
+export type FeedbackSheet = {
+  date: Scalars["String"];
+  course: Scalars["String"];
+  time: Scalars["String"];
+  deadline: Scalars["String"];
+  status: Scalars["String"];
 };
 
 export type Info = {
@@ -48,8 +56,38 @@ export type InfoDetail = {
   file: Scalars["String"];
 };
 
+export type Material = {
+  date: Scalars["String"];
+  property: Scalars["String"];
+  course: Scalars["String"];
+  title: Scalars["String"];
+  status: Scalars["String"];
+  link: Scalars["String"];
+  detail?: Maybe<MaterialDetail>;
+};
+
+export type MaterialDetail = {
+  sender: Scalars["String"];
+  date: Scalars["String"];
+  property: Scalars["String"];
+  course: Scalars["String"];
+  title: Scalars["String"];
+  content: Scalars["String"];
+  link: Scalars["String"];
+  fileLink: Scalars["String"];
+};
+
 export type Query = {
-  info?: Maybe<Array<Maybe<Info>>>;
+  allInfo: Array<Maybe<Info>>;
+  allCourse: Array<Maybe<Course>>;
+};
+
+export type Task = {
+  date: Scalars["String"];
+  course: Scalars["String"];
+  title: Scalars["String"];
+  deadline: Scalars["String"];
+  status: Scalars["String"];
 };
 
 import {
@@ -135,7 +173,7 @@ export type CacheControlDirectiveResolver<
   }
 > = DirectiveResolverFn<Result, Parent, Context, Args>;
 
-export type CurriculumResolvers<Context = any, ParentType = Curriculum> = {
+export type CourseResolvers<Context = any, ParentType = Course> = {
   title?: Resolver<Scalars["String"], ParentType, Context>;
   teachers?: Resolver<Maybe<Array<Scalars["String"]>>, ParentType, Context>;
   year?: Resolver<Scalars["String"], ParentType, Context>;
@@ -144,6 +182,17 @@ export type CurriculumResolvers<Context = any, ParentType = Curriculum> = {
   time?: Resolver<Scalars["String"], ParentType, Context>;
   status?: Resolver<Scalars["String"], ParentType, Context>;
   link?: Resolver<Scalars["String"], ParentType, Context>;
+};
+
+export type FeedbackSheetResolvers<
+  Context = any,
+  ParentType = FeedbackSheet
+> = {
+  date?: Resolver<Scalars["String"], ParentType, Context>;
+  course?: Resolver<Scalars["String"], ParentType, Context>;
+  time?: Resolver<Scalars["String"], ParentType, Context>;
+  deadline?: Resolver<Scalars["String"], ParentType, Context>;
+  status?: Resolver<Scalars["String"], ParentType, Context>;
 };
 
 export type InfoResolvers<Context = any, ParentType = Info> = {
@@ -168,8 +217,41 @@ export type InfoDetailResolvers<Context = any, ParentType = InfoDetail> = {
   file?: Resolver<Scalars["String"], ParentType, Context>;
 };
 
+export type MaterialResolvers<Context = any, ParentType = Material> = {
+  date?: Resolver<Scalars["String"], ParentType, Context>;
+  property?: Resolver<Scalars["String"], ParentType, Context>;
+  course?: Resolver<Scalars["String"], ParentType, Context>;
+  title?: Resolver<Scalars["String"], ParentType, Context>;
+  status?: Resolver<Scalars["String"], ParentType, Context>;
+  link?: Resolver<Scalars["String"], ParentType, Context>;
+  detail?: Resolver<Maybe<MaterialDetail>, ParentType, Context>;
+};
+
+export type MaterialDetailResolvers<
+  Context = any,
+  ParentType = MaterialDetail
+> = {
+  sender?: Resolver<Scalars["String"], ParentType, Context>;
+  date?: Resolver<Scalars["String"], ParentType, Context>;
+  property?: Resolver<Scalars["String"], ParentType, Context>;
+  course?: Resolver<Scalars["String"], ParentType, Context>;
+  title?: Resolver<Scalars["String"], ParentType, Context>;
+  content?: Resolver<Scalars["String"], ParentType, Context>;
+  link?: Resolver<Scalars["String"], ParentType, Context>;
+  fileLink?: Resolver<Scalars["String"], ParentType, Context>;
+};
+
 export type QueryResolvers<Context = any, ParentType = Query> = {
-  info?: Resolver<Maybe<Array<Maybe<Info>>>, ParentType, Context>;
+  allInfo?: Resolver<Array<Maybe<Info>>, ParentType, Context>;
+  allCourse?: Resolver<Array<Maybe<Course>>, ParentType, Context>;
+};
+
+export type TaskResolvers<Context = any, ParentType = Task> = {
+  date?: Resolver<Scalars["String"], ParentType, Context>;
+  course?: Resolver<Scalars["String"], ParentType, Context>;
+  title?: Resolver<Scalars["String"], ParentType, Context>;
+  deadline?: Resolver<Scalars["String"], ParentType, Context>;
+  status?: Resolver<Scalars["String"], ParentType, Context>;
 };
 
 export interface UploadScalarConfig
@@ -178,10 +260,14 @@ export interface UploadScalarConfig
 }
 
 export type Resolvers<Context = any> = {
-  Curriculum?: CurriculumResolvers<Context>;
+  Course?: CourseResolvers<Context>;
+  FeedbackSheet?: FeedbackSheetResolvers<Context>;
   Info?: InfoResolvers<Context>;
   InfoDetail?: InfoDetailResolvers<Context>;
+  Material?: MaterialResolvers<Context>;
+  MaterialDetail?: MaterialDetailResolvers<Context>;
   Query?: QueryResolvers<Context>;
+  Task?: TaskResolvers<Context>;
   Upload?: GraphQLScalarType;
 };
 

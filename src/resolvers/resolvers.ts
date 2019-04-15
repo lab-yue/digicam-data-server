@@ -1,11 +1,13 @@
-import Api from "../api/index"
-
-const api = new Api()
+import API from "../api/index"
+const api = new API()
 
 export default {
     Query: {
-        async info() {
-            return api.getAllInfo()
+        async allInfo() {
+            return api.info.getAll()
+        },
+        async allCourse() {
+            return api.course.getAll()
         },
     },
 }
